@@ -72,7 +72,6 @@ const ProductList = async () => {
                   >
                     {product.description}
                   </p>
-
                   <div className="flex justify-between items-center">
                     <p className="text-xl text-orange-500 font-semibold">
                       ${product.price}

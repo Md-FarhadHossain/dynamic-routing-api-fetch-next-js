@@ -56,7 +56,7 @@ const page = ({ params }: { params: ProductParams }) => {
           <p>${products.price}</p> */}
           {/* Add more details as needed */}
 
-          <div className="flex container mx-auto mt-16">
+          <div className="flex lg:flex-row flex-col container mx-auto mt-16">
             {/* image */}
             <div>
               {!products.thumbnail ? (
@@ -97,12 +97,21 @@ const page = ({ params }: { params: ProductParams }) => {
                     ) : (
                       <>
                         {" "}
-                        <Star className="w-[20px] mr-2 text-yellow-500" />
+                        <Star className="w-[20px] mr-2 " />
                         {products?.rating}
                       </>
                     )}
                   </div>
-                  <span className="px-4">|</span>
+
+                  <span className="px-4">
+                    {products?.rating ? (
+                      <>|</>
+                    ) : (
+                      <>
+                        <Skeleton className="w-[5px]" />
+                      </>
+                    )}
+                  </span>
 
                   <div className="text-lg">
                     {" "}
@@ -146,12 +155,29 @@ const page = ({ params }: { params: ProductParams }) => {
 
               {/* action button */}
               <div className="mt-8 text flex gap-4">
-                <Button className="text-lg bg-orange-500" size="lg">
-                  <ShoppingBasket className="w-[20px] mr-2" /> Add to cart
-                </Button>
-                <Button className="bg-blue-500 text-lg" size="lg">
-                  <Package className="w-[20px] mr-2" /> Buy Now
-                </Button>
+                {!products?.price ? (
+                  <>
+                    <Skeleton className="h-[40px] w-[188px] px-4 py-2" />
+                  </>
+                ) : (
+                  <>
+                    <Button className="text-lg bg-orange-500" size="lg">
+                      <ShoppingBasket className="w-[20px] mr-2" /> Add to cart
+                    </Button>
+                  </>
+                )}
+
+                {!products?.price ? (
+                  <>
+                    <Skeleton className="h-[40px] w-[188px] px-4 py-2" />
+                  </>
+                ) : (
+                  <>
+                    <Button className="bg-blue-500 text-lg" size="lg">
+                      <Package className="w-[20px] mr-2" /> Buy Now
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
